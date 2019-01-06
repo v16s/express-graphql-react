@@ -1,0 +1,44 @@
+{
+  "dependencies": {
+    "apollo-server-hapi": "^2.3.1",
+    "graphql": "^14.0.2",
+    "hapi": "^17.8.1",
+    "inert": "^5.1.2",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.2"
+  },
+  "scripts": {
+    "build-client": "parcel build ./client/index.html --out-dir ./dist",
+    "server": "nodemon -x babel-node ./server/index -w ./server"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "antd": "^3.11.6",
+    "babel-plugin-import": "^1.11.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "eslint": "^5.12.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "less": "2.7",
+    "node-sass": "^4.11.0",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "name": "hapi-graphql",
+  "version": "1.0.0",
+  "main": "server/index.js",
+  "license": "MIT",
+  "private": true
+}

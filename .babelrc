@@ -1,0 +1,25 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
+    ["@babel/plugin-proposal-class-properties"],
+    ["@babel/plugin-proposal-object-rest-spread", false, "object-rest-spread"],
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./"],
+        "alias": {
+          "dist": "./dist",
+          "models": "./server/models"
+        }
+      }
+    ]
+  ]
+}
