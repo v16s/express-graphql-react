@@ -17,7 +17,8 @@
         "root": ["./"],
         "alias": {
           "dist": "./dist",
-          "models": "./server/models"
+          "models": "./server/models",
+          "config": "./server/config"
         }
       }
     ]

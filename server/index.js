@@ -1,7 +1,7 @@
 import '@babel/polyfill'
 import hapi from 'hapi'
 import mongoose from 'mongoose'
-import config from './config'
+import config from 'config'
 import Model from './models'
 import schema from './graphql'
 import path from 'path'
@@ -20,7 +20,7 @@ connection.on('open', () => {
 const init = async () => {
   const server = new ApolloServer({ schema })
   const app = hapi.server({
-    port: 3000,
+    port: config.port,
     routes: {
       files: {
         relativeTo: path.join(__dirname, '..', 'dist')
@@ -45,6 +45,6 @@ const init = async () => {
 
   await server.installSubscriptionHandlers(app.listener)
   await app.start()
-  console.log('server running at 3000')
+  console.log('server running at', config.port)
 }
 init()
