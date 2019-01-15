@@ -1,11 +1,17 @@
 import '@babel/polyfill'
-import hapi from 'hapi'
+import express from 'express'
+import { createServer } from 'http'
 import mongoose from 'mongoose'
 import config from 'config'
 import Model from './models'
+import log from 'roarr'
 import schema from './graphql'
 import path from 'path'
-import { ApolloServer, gql } from 'apollo-server-hapi'
+import { ApolloServer, gql } from 'apollo-server-express'
+
+const app = express()
+
+app.use(express.static('dist'))
 
 mongoose.connect(
   config.db_url,
@@ -14,37 +20,21 @@ mongoose.connect(
 
 const connection = mongoose.connection
 connection.on('open', () => {
-  console.log('connected to database')
+  log.info('connected to database')
 })
 
 const init = async () => {
   const server = new ApolloServer({ schema })
-  const app = hapi.server({
-    port: config.port,
-    routes: {
-      files: {
-        relativeTo: path.join(__dirname, '..', 'dist')
-      }
-    }
-  })
-  await app.register(require('inert'))
+  const httpServer = createServer(app)
 
-  app.route({
-    method: 'GET',
-    path: '/{path*}',
-    handler: {
-      directory: {
-        path: path.join(__dirname, '..', 'dist'),
-        index: ['index.html', 'default.html']
-      }
-    }
-  })
   await server.applyMiddleware({
     app
   })
-
-  await server.installSubscriptionHandlers(app.listener)
-  await app.start()
-  console.log('server running at', config.port)
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve('dist', 'index.html'))
+  })
+  httpServer.listen(config.port, () => {
+    log.info('Listening on ' + config.port)
+  })
 }
 init()

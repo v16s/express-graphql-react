@@ -13,6 +13,78 @@ $border-radius-base: 4px; // major border radius
 $border-color-base: #d9d9d9; // major border color
 $box-shadow-base: 0 2px 8px rgba(0, 0, 0, 0.15); // major shadow for layers
 
-body {
-  background-color: #f5222d;
+// styles
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+}
+.logo {
+  width: 120px;
+  height: 64px;
+  font-size: 20px;
+  float: left;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ant {
+  &-menu {
+    &.nav {
+      display: flex;
+      justify-content: flex-end;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border-bottom: none !important;
+      & .ant-menu-item {
+        border-bottom: none !important;
+      }
+      & input {
+        background-color: rgba(0, 0, 0, 0.05) !important;
+        outline: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding-right: 40px !important;
+        &:focus {
+          outline: none !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+  &-col-md {
+    &-6,
+    &-24 {
+      margin-top: 25px;
+    }
+  }
+  .graph-card &-card-body {
+    padding: 0 !important;
+  }
+  &-select-arrow {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    margin-top: 0 !important;
+    top: 0 !important;
+  }
+}
+.anticon.anticon-down.ant-select-arrow-icon {
+  margin-right: -2px;
+}
+.graph-card-title {
+  .pair {
+    font-size: 15px;
+    &-name {
+      color: lighten(#000, 70%);
+    }
+  }
+  .exchange {
+    font-size: 12px;
+    color: lighten(#000, 50%);
+    font-weight: 300;
+  }
 }
